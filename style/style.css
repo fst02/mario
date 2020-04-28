@@ -1,0 +1,13 @@
+canvas#frame {
+    width: 1024px;
+    height: 959px;
+    border: 1px solid black;
+    background-image: url();
+    z-index: 0;
+    position: absolute;
+}
+
+canvas#ground {
+    z-index: 1;
+    position: absolute;
+}
