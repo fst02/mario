@@ -1,6 +1,46 @@
-canvas#frame {
-    border: 1px solid black;
-    background-image: url();
-    z-index: 0;
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#gameField {
+    position: relative;
+    width: 800px;
+    height: 600px;
+}
+#background {
+    width: 800px;
+    height: 600px;
     position: absolute;
+    z-index: -1;
+}
+#ground {
+    width: 100%;
+    height: 100px;
+    position: relative;
+    z-index: 0;
+    top: 500px;
+    left: 0;
+    background-image: url('../images/ground-small.png');
+    background-repeat: repeat-x;
+}
+#mario {
+    width: 88px;
+    height: 100px;
+    position: absolute;
+    z-index: 1;
+    top: 400px;
+    left: 350px;
+}
+
+#pipe {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    z-index: 1;
+    top: 400px;
+    left: 600px;
+    background-image: url('../images/pipe-tr.png');
+    background-repeat: repeat-x;
+    background-size: 100px 100px;
 }
