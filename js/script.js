@@ -1,11 +1,6 @@
-const groundHeight = 100;
-const groundWidth = 100;
-const mapHeight = 600;
-const mapWidth = 800;
-let rightPressed = false;
-let leftPressed = false;
-let upPressed = false;
-let downPressed = false;
+let rightPressed;
+let leftPressed;
+let upPressed;
 let initX = 0;
 let initY = 400;
 
@@ -30,7 +25,7 @@ function keyDownHandler(event) {
     initX -= 10;
     document.getElementById('gameField').style.left = `${initX}px`;
   }
-  if (event.keyCode === 37) {
+  if (event.keyCode === 37 && initX < 330) {
     leftPressed = true;
     initX += 10;
     document.getElementById('gameField').style.left = `${initX}px`;
@@ -54,4 +49,13 @@ function keyUpHandler(event) {
     marioDown();
   }
 }
+
+// TODO
+// function createPipes(quantity) {
+//  let pipe = document.getElementById('pipe');
+//  for (let i = 0; i < quantity; i++) {
+//    document.getElementById('gameField').appendChild(pipe);
+//  }
+// }
+
 eventListener();
