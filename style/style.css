@@ -5,7 +5,7 @@ body {
 }
 #gameField {
     position: relative;
-    width: 80000px;
+    width: 4000px;
     height: 600px;
 }
 #gameWindow{
@@ -39,19 +39,18 @@ body {
     position: absolute;
     z-index: 1;
     top: 400px;
-    left: 350px;
+    left: 200px;
     background-image: url('../images/mario_transparent.png');
     background-size: 88px 100px;
 }
 
 #pipe {
     width: 100px;
-    height: 100px;
+    height: 150px;
     position: absolute;
     z-index: 1;
-    top: 400px;
-    left: 600px;
+    top: 350px;
     background-image: url('../images/pipe-tr.png');
     background-repeat: repeat-x;
-    background-size: 100px 100px;
+    background-size: 100px 150px;
 }
