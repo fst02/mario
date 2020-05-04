@@ -7,10 +7,12 @@ let groundLevel;
 const marioBack = document.getElementById('mario').offsetLeft;
 const marioFront = marioBack + 88;
 const pipeOffset = 400;
+const pipeTop = 250;
 const ground = 400;
 const step = 10;
 const jump = 10;
 const jumpHold = 100;
+const pipeWidth = 100;
 
 function calcPipeBack() {
   const gameFieldX = Math.abs(document.getElementById('gameField').offsetLeft);
@@ -33,14 +35,16 @@ function createPipes(quantity) {
 }
 createPipes(10);
 
-function marioDown() {
+function setGravity() {
   const time = setInterval(() => {
-    initY += jump;
-    document.getElementById('mario').style.top = `${initY}px`;
-    if (initY >= ground) {
+    if (initY >= ground || (initY === pipeTop && marioFront >= calcPipeBack() && marioBack <= calcPipeBack() + pipeWidth)) {
       clearInterval(time);
+    } else {
+      initY += jump;
+      document.getElementById('mario').style.top = `${initY}px`;
     }
   }, 50);
+  return time;
 }
 
 function onGround() {
@@ -57,29 +61,41 @@ function marioBeforePipe() {
   }
 }
 
+function marioAfterPipe() {
+  if (marioBack === calcPipeBack() + pipeWidth) {
+    leftPressed = false;
+  }
+}
+
 function keyDownHandler(event) {
   if (event.key === 'ArrowRight') {
     rightPressed = true;
     marioBeforePipe();
-    if (rightPressed) {
+    if (rightPressed || initY <= pipeTop) {
       initX -= step;
       document.getElementById('gameField').style.left = `${initX}px`;
+      setGravity();
     }
   }
   if (event.key === 'ArrowLeft' && initX < 330) {
     leftPressed = true;
-    initX += step;
-    document.getElementById('gameField').style.left = `${initX}px`;
+    marioAfterPipe();
+    if (leftPressed) {
+      initX += step;
+      document.getElementById('gameField').style.left = `${initX}px`;
+      setGravity();
+    }
   }
-  if (event.key === 'ArrowUp' && initY > 200) {
+  if (event.key === 'ArrowUp' && initY > 300) {
     const isOnGround = onGround();
     if (isOnGround) {
       upPressed = true;
       initY -= jumpHold;
       document.getElementById('mario').style.top = `${initY}px`;
-      marioDown();
+      setGravity();
     }
     if (upPressed) {
+      console.log(initY);
       setTimeout(() => {
         initY -= jumpHold;
         document.getElementById('mario').style.top = `${initY}px`;
