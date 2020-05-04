@@ -44,7 +44,7 @@ body {
     background-size: 88px 100px;
 }
 
-#pipe {
+.pipe {
     width: 100px;
     height: 150px;
     position: absolute;
@@ -54,3 +54,4 @@ body {
     background-repeat: repeat-x;
     background-size: 100px 150px;
 }
+
