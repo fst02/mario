@@ -8,21 +8,22 @@ let upPressed;
 const step = 10;
 
 function setGravity() {
-  const time = setInterval(() => {
+  const aboveGround = setInterval(() => {
     if (mario.position >= mario.ground || mario.isOnPipe()) {
-      clearInterval(time);
+      clearInterval(aboveGround);
     } else {
       mario.position += mario.jump;
       mario.moveUpwards();
     }
   }, 50);
-  return time;
+  return aboveGround;
 }
 
 function keyDownHandler(event) {
   if (event.key === 'ArrowRight') {
     rightPressed = true;
     if (mario.isBeforePipe()) {
+      console.log('pipe!');
       rightPressed = false;
     }
     if (rightPressed || mario.position <= pipes.top) {

@@ -1,7 +1,6 @@
-
 export default {
   position: 0,
-  leftSide: 330,
+  leftSide: 200,
   topSide: 300,
 
   move() {
