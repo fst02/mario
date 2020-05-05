@@ -1,11 +1,19 @@
 import pipes from './pipes.js';
 
 export default {
-  initY: 400,
+  position: 400,
   width: 88,
   jump: 10,
   jumpHold: 100,
   ground: 400,
+
+  moveUpwards() {
+    this.getElement().style.top = `${this.position}px`;
+  },
+
+  getElement() {
+    return document.getElementById('mario');
+  },
 
   getLeftSide() {
     return document.getElementById('mario').offsetLeft;
@@ -17,7 +25,7 @@ export default {
 
   isOnPipe() {
     const pipeLeftSide = pipes.getLeftSide();
-    return this.initY === pipes.top
+    return this.position === pipes.top
       && this.getRightSide() >= pipeLeftSide
       && this.getLeftSide() <= pipeLeftSide + pipes.width;
   },
@@ -33,4 +41,4 @@ export default {
   isAfterPipe() {
     return this.getLeftSide() === pipes.getLeftSide() + pipes.width;
   },
-}
+};
