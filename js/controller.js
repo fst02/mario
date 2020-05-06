@@ -1,6 +1,7 @@
 import pipes from './pipes.js';
 import mario from './mario.js';
 import world from './world.js';
+import goomba from './goomba.js';
 
 let rightPressed;
 let leftPressed;
@@ -110,4 +111,5 @@ function eventListener() {
 }
 
 pipes.create(10);
+goomba.create(5);
 eventListener();
