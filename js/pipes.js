@@ -3,8 +3,8 @@ export default {
   top: 250,
   width: 100,
   getLeftSide() {
-    const gameFieldX = Math.abs(document.getElementById('gameField').offsetLeft);
-    return this.offset - (gameFieldX % this.offset);
+    const gameFieldX = document.getElementById('gameField').offsetLeft;
+    return this.offset + (gameFieldX % this.offset);
   },
   create(quantity) {
     const pipe = document.createElement('div');

@@ -6,6 +6,38 @@ let rightPressed;
 let leftPressed;
 let upPressed;
 const step = 10;
+let hasWon = false;
+let welcomeMessage = document.getElementById('welcomeMessage');
+
+function getFlagPosition() {
+  return document.getElementById('flag').getBoundingClientRect().left;
+}
+
+function winCondition() {
+  if (hasWon) {
+    return false;
+  }
+  if (mario.getElement().getBoundingClientRect().left === getFlagPosition()) {
+    hasWon = true;
+  }
+  return hasWon;
+}
+
+function getUsername(message, defaultValue) {
+  const playerName = prompt(message, defaultValue);
+  if (playerName == null) {
+    return defaultValue;
+  }
+  return playerName;
+}
+
+function setUsername() {
+  if (winCondition() === true) {
+    window.localStorage.setItem('username', getUsername('Congratulations! Well done! You won! Please give your username: ', 'Anonymous'));
+    const player = window.localStorage.getItem('username');
+    welcomeMessage.innerHTML = `Welcome ${player}!`;
+  }
+}
 
 function setGravity() {
   const aboveGround = setInterval(() => {
@@ -20,10 +52,10 @@ function setGravity() {
 }
 
 function keyDownHandler(event) {
+  setUsername();
   if (event.key === 'ArrowRight') {
     rightPressed = true;
     if (mario.isBeforePipe()) {
-      console.log('pipe!');
       rightPressed = false;
     }
     if (rightPressed || mario.position <= pipes.top) {

@@ -5,7 +5,7 @@ body {
 }
 #gameField {
     position: relative;
-    width: 4000px;
+    width: 800px;
     height: 600px;
 }
 #gameWindow{
@@ -44,6 +44,18 @@ body {
     background-size: 88px 100px;
 }
 
+#flag {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    float: right;
+    z-index: 1;
+    top: 300px;
+    background-image: url('../images/flag.png');
+    background-size: 100px 100px;
+    align-self: flex-end;
+}
+
 .pipe {
     width: 100px;
     height: 150px;
@@ -54,4 +66,3 @@ body {
     background-repeat: repeat-x;
     background-size: 100px 150px;
 }
-

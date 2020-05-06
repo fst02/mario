@@ -1,3 +1,4 @@
+
 export default {
   position: 0,
   leftSide: 200,
