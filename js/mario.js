@@ -39,6 +39,6 @@ export default {
   },
 
   isAfterPipe() {
-    return this.getLeftSide() === pipes.getLeftSide() + pipes.width;
+    return this.getLeftSide() === pipes.getRightSide();
   },
 };

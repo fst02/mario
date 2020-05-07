@@ -114,8 +114,14 @@ function eventListener() {
 
 function moveGoombas() {
   setInterval(() => {
+    if (goomba.isAfterPipe()) {
+      goomba.direction = 1;
+    }
+    if (goomba.isBeforePipe()) {
+      goomba.direction = -1;
+    }
     goomba.getElements().forEach((element) => {
-      element.style.left = `${parseInt(element.style.left, 10) + step}px`;
+      element.style.left = `${parseInt(element.style.left, 10) + (step * goomba.direction)}px`;
     });
   }, 500);
 }
@@ -124,3 +130,5 @@ pipes.create(10);
 goomba.create(5);
 moveGoombas();
 eventListener();
+pipes.getBack();
+pipes.getFront();

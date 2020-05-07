@@ -1,3 +1,5 @@
+import pipes from './pipes.js';
+
 export default {
   offset: 400,
   top: 400,
@@ -10,10 +12,34 @@ export default {
     return Array.from(document.getElementsByClassName('goomba'));
   },
 
-  getLeftSide() {
-    const gameFieldX = document.getElementById('gameField').offsetLeft;
-    return this.offset + (gameFieldX % this.offset);
+  getBackSides() {
+    return this.getElements().map((element) => parseInt(element.style.left, 10));
   },
+
+  getFrontSides() {
+    return this.getBackSides().map((backSide) => backSide + 50);
+  },
+
+  isAfterPipe() {
+    const backSides = this.getBackSides();
+    for (let i = 0; i < backSides.length; i++) {
+      if (backSides[i] <= pipes.front[i]) {
+        return true;
+      }
+      return false;
+    }
+  },
+
+  isBeforePipe() {
+    const frontSides = this.getFrontSides();
+    for (let i = 0; i < frontSides.length; i++) {
+      if (frontSides[i] >= pipes.back[i + 1]) {
+        return true;
+      }
+      return false;
+    }
+  },
+
   create(quantity) {
     const goomba = document.createElement('div');
     goomba.setAttribute('class', 'goomba');
