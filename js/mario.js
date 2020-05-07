@@ -10,7 +10,7 @@ export default {
   ground: 400,
   deadJump: 10,
 
-  moveUpwards() {
+  moveVertically() {
     this.getElement().style.top = `${this.position}px`;
   },
 
@@ -61,5 +61,25 @@ export default {
       }
     });
     return isDead;
+  },
+
+  resetPosition() {
+    this.position = 400;
+    this.moveVertically();
+    world.position = 0;
+    world.move();
+  },
+
+  die() {
+    const handleDying = () => {
+      this.position += this.deadJump;
+      this.moveVertically();
+      if (this.position >= 600) {
+        this.resetPosition();
+        return;
+      }
+      setTimeout(handleDying, 500);
+    };
+    setTimeout(handleDying, 500);
   },
 };

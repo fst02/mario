@@ -46,7 +46,7 @@ function setGravity() {
       clearInterval(aboveGround);
     } else {
       mario.position += mario.jump;
-      mario.moveUpwards();
+      mario.moveVertically();
     }
   }, 50);
   return aboveGround;
@@ -60,13 +60,7 @@ function keyDownHandler(event) {
       rightPressed = false;
     }
     if (mario.isDead()) {
-      const marioDying = setInterval(() => {
-        mario.position += mario.deadJump;
-        mario.moveUpwards();
-        if (mario.position >= 600) {
-          clearInterval(marioDying);
-        }
-      }, 500);
+      mario.die();
     }
     if (rightPressed || mario.position <= pipes.top) {
       world.position -= step;
@@ -90,13 +84,13 @@ function keyDownHandler(event) {
     if (isOnGround) {
       upPressed = true;
       mario.position -= mario.jumpHold;
-      mario.moveUpwards();
+      mario.moveVertically();
       setGravity();
     }
     if (upPressed) {
       setTimeout(() => {
         mario.position -= mario.jumpHold;
-        mario.moveUpwards();
+        mario.moveVertically();
       }, 100);
     }
   }
@@ -132,7 +126,9 @@ function moveGoombas() {
     goomba.getElements().forEach((element) => {
       element.style.left = `${parseInt(element.style.left, 10) + (step * goomba.direction)}px`;
     });
-    console.log(mario.isDead());
+    if (mario.isDead()) {
+      mario.die();
+    }
   }, 500);
 }
 
