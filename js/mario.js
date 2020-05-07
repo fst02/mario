@@ -8,6 +8,7 @@ export default {
   jump: 10,
   jumpHold: 100,
   ground: 400,
+  deadJump: 10,
 
   moveUpwards() {
     this.getElement().style.top = `${this.position}px`;

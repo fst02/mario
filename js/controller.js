@@ -59,8 +59,15 @@ function keyDownHandler(event) {
     if (mario.isBeforePipe()) {
       rightPressed = false;
     }
-    //mario.isDead();
-    console.log(mario.isDead());
+    if (mario.isDead()) {
+      const marioDying = setInterval(() => {
+        mario.position += mario.deadJump;
+        mario.moveUpwards();
+        if (mario.position >= 600) {
+          clearInterval(marioDying);
+        }
+      }, 500);
+    }
     if (rightPressed || mario.position <= pipes.top) {
       world.position -= step;
       world.move();
