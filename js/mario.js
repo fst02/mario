@@ -1,4 +1,6 @@
 import pipes from './pipes.js';
+import goomba from './goomba.js';
+import world from './world.js';
 
 export default {
   position: 400,
@@ -40,5 +42,23 @@ export default {
 
   isAfterPipe() {
     return this.getLeftSide() === pipes.getRightSide();
+  },
+
+  getPosition() {
+    return (-1 * world.getPosition()) + 300;
+  },
+
+  isDead() {
+    let isDead = false;
+    const marioPosition = this.getPosition();
+    goomba.getElements().forEach((goombaElement) => {
+      if (
+        marioPosition >= parseInt(goombaElement.style.left, 10)
+        && marioPosition <= (parseInt(goombaElement.style.left, 10) + goomba.width)
+      ) {
+        isDead = true;
+      }
+    });
+    return isDead;
   },
 };

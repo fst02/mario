@@ -6,4 +6,7 @@ export default {
   move() {
     document.getElementById('gameField').style.left = `${this.position}px`;
   },
+  getPosition() {
+    return parseInt(document.getElementById('gameField').style.left, 10);
+  },
 };

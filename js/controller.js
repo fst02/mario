@@ -59,6 +59,8 @@ function keyDownHandler(event) {
     if (mario.isBeforePipe()) {
       rightPressed = false;
     }
+    //mario.isDead();
+    console.log(mario.isDead());
     if (rightPressed || mario.position <= pipes.top) {
       world.position -= step;
       world.move();
@@ -123,11 +125,12 @@ function moveGoombas() {
     goomba.getElements().forEach((element) => {
       element.style.left = `${parseInt(element.style.left, 10) + (step * goomba.direction)}px`;
     });
+    console.log(mario.isDead());
   }, 500);
 }
 
 pipes.create(10);
-goomba.create(5);
+goomba.create(1);
 moveGoombas();
 eventListener();
 pipes.getBack();
