@@ -8,7 +8,7 @@ let leftPressed;
 let upPressed;
 const step = 10;
 let hasWon = false;
-let welcomeMessage = document.getElementById('welcomeMessage');
+const welcomeMessage = document.getElementById('welcomeMessage');
 
 function getFlagPosition() {
   return document.getElementById('flag').getBoundingClientRect().left;
@@ -110,6 +110,17 @@ function eventListener() {
   document.addEventListener('keyup', keyUpHandler, false);
 }
 
+// https://stackoverflow.com/questions/15792855/moving-div-box-using-javascript
+
+function moveGoombas() {
+  setInterval(() => {
+    goomba.getElements().forEach((element) => {
+      element.style.left = `${parseInt(element.style.left, 10) + step}px`;
+    });
+  }, 500);
+}
+
 pipes.create(10);
 goomba.create(5);
+moveGoombas();
 eventListener();

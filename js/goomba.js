@@ -3,6 +3,12 @@ export default {
   top: 400,
   width: 100,
   distance: 625,
+  speed: 10,
+  direction: 1,
+
+  getElements() {
+    return Array.from(document.getElementsByClassName('goomba'));
+  },
 
   getLeftSide() {
     const gameFieldX = document.getElementById('gameField').offsetLeft;

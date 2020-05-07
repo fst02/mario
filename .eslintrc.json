@@ -17,6 +17,7 @@
         "no-plusplus": "off",
         "import/extensions": "off",
         "no-return-assign": "off",
-        "no-alert": "off"
+        "no-alert": "off",
+        "no-param-reassign": "off"
     }
 }
